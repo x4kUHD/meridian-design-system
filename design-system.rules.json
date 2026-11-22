@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "ui": "@meridian/ui",
+    "componentImports": ["@meridian/ui"],
+    "mergeFunctions": ["cn"],
+    "variantFunctions": ["cva"]
+  },
+  "rules": {
+    "no-raw-colors": {
+      "severity": "error",
+      "rationale": "Every colour is a token. Raw hex or Tailwind palette colours break theming and the warm Meridian palette."
+    },
+    "no-arbitrary-values": {
+      "severity": "warn",
+      "rationale": "Spacing, radius and type come from the scale. If the scale lacks a step, add a token instead of an arbitrary value."
+    },
+    "no-inline-styles": {
+      "severity": "warn",
+      "rationale": "Inline styles bypass tokens and cannot be themed."
+    },
+    "no-restyle": {
+      "severity": "error",
+      "rationale": "Pick a variant instead of overriding a component's own look with className.",
+      "contracts": [
+        { "pattern": "^Button$", "allow": ["layout", "spacing"], "message": "Use variant and size; do not recolour Button." },
+        { "pattern": "^Card$", "allow": ["layout", "spacing"], "message": "Use the variant prop for elevation." }
+      ]
+    }
+  }
+}
